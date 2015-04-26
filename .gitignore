@@ -1,0 +1,14 @@
+bin/
+gen/
+target/
+project/target
+project/project
+
+.idea
+.idea*/
+.idea_modules
+*.iml
+
+build.xml
+local.properties
+proguard-*.txt
