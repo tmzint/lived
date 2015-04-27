@@ -141,7 +141,7 @@ trait FragmentLike
 {{{
 import android.app.Activity
 import android.util.Log
-import com.tmzint.android.scala.lifecycle._
+import com.tmzint.android.lived.lifecycle._
 
 class MainActivity extends Activity with ActivityLifecycleManager {
     val mA = new Managed(new T1("A"))

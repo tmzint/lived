@@ -30,7 +30,7 @@ Example:
 
     import android.app.Activity
     import android.util.Log
-    import com.tmzint.android.scala.lifecycle._
+    import com.tmzint.android.lived.lifecycle._
     
     // The MainActivity class extends the ActivityLifecycleManager to delegate lifecycle events.
     class MainActivity extends Activity with ActivityLifecycleManager {
