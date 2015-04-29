@@ -182,37 +182,36 @@ trait ActivityLikeLifecycleManager extends LifecycleManager {
 /**
  * Default Activity LifecycleManager trait, extend to enable the use of Managed objects in its scope.
  */
-trait ActivityLifecycleManager extends ActivityLikeLifecycleManager {
-    self: Activity =>
+trait ActivityLifecycleManager extends Activity with ActivityLikeLifecycleManager {
 
     override def onCreate(savedInstanceState: Bundle): Unit = {
-        self.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)
         lifecycleManagers.createMng.onCreate()
     }
 
     override def onStart(): Unit = {
-        self.onStart()
+        super.onStart()
         lifecycleManagers.startMng.onStart()
     }
 
     override def onResume(): Unit = {
-        self.onResume()
+        super.onResume()
         lifecycleManagers.resumeMng.onResume()
     }
 
     override def onPause(): Unit = {
         lifecycleManagers.pauseMng.onPause()
-        self.onPause()
+        super.onPause()
     }
 
     override def onStop(): Unit = {
         lifecycleManagers.stopMng.onStop()
-        self.onStop()
+        super.onStop()
     }
 
     override def onDestroy(): Unit = {
         lifecycleManagers.destroyMng.onDestroy()
-        self.onDestroy()
+        super.onDestroy()
     }
 }
 
@@ -222,63 +221,61 @@ trait FragmentLikeLifecycleManager extends ActivityLikeLifecycleManager {
 /**
  * Default Fragment LifecycleManager trait, extend to enable the use of Managed objects in its scope.
  */
-trait FragmentLifecycleManager extends FragmentLikeLifecycleManager {
-    self: Fragment =>
+trait FragmentLifecycleManager extends Fragment with FragmentLikeLifecycleManager {
 
     override def onCreate(savedInstanceState: Bundle): Unit = {
-        self.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)
         lifecycleManagers.createMng.onCreate()
     }
 
-
     override def onCreateView(inf: LayoutInflater, vg: ViewGroup, saved: Bundle): View = {
-        val v = self.onCreateView(inf, vg, saved)
+        val v = super.onCreateView(inf, vg, saved)
         lifecycleManagers.createViewMng.onCreateView()
         v
     }
 
     override def onStart(): Unit = {
-        self.onStart()
+        super.onStart()
         lifecycleManagers.startMng.onStart()
     }
 
     override def onResume(): Unit = {
-        self.onResume()
+        super.onResume()
         lifecycleManagers.resumeMng.onResume()
     }
 
     override def onPause(): Unit = {
         lifecycleManagers.pauseMng.onPause()
-        self.onPause()
+        super.onPause()
     }
 
     override def onStop(): Unit = {
         lifecycleManagers.stopMng.onStop()
-        self.onStop()
+        super.onStop()
     }
 
     override def onDestroy(): Unit = {
         lifecycleManagers.destroyMng.onDestroy()
-        self.onDestroy()
+        super.onDestroy()
     }
 
     override def onAttach(activity: Activity): Unit = {
-        self.onAttach(activity)
+        super.onAttach(activity)
         lifecycleManagers.attachMng.onAttach()
     }
 
     override def onActivityCreated(savedInstanceState: Bundle): Unit = {
-        self.onActivityCreated(savedInstanceState)
+        super.onActivityCreated(savedInstanceState)
         lifecycleManagers.activityCreatedMng.onActivityCreated()
     }
 
     override def onDetach(): Unit = {
         lifecycleManagers.detachMng.onDetach()
-        self.onDetach()
+        super.onDetach()
     }
 
     override def onDestroyView(): Unit = {
         lifecycleManagers.destroyViewMng.onDestroyView()
-        self.onDestroyView()
+        super.onDestroyView()
     }
 }
