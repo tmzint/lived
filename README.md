@@ -19,9 +19,10 @@ ActivityLike, Creatable, Startable, Resumable, Pausable, Stoppable and Destroyab
 can get Managed in an object contained in an Activity that extends the ActivityLifecycleManager trait.
 
 ### FragmentLike traits
-ActivityLike, Creatable, CreateViewable, Attachable, Startable, Resumable, ActivityCreatedable,
-Detachable, DestroyViewable, Pausable, Stoppable and Destroyable are traits that can get Managed in
-an object contained in an Fragment that extends the FragmentLifecycleManager trait.
+FragmentLike, ActivityLike, Creatable, CreateViewable, Attachable, Startable, Resumable,
+ActivityCreatedable, Detachable, DestroyViewable, Pausable, Stoppable and Destroyable are traits
+that can get Managed in an object contained in an Fragment that extends the FragmentLifecycleManager
+trait.
 
 Example:
 ------
