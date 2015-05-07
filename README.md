@@ -76,3 +76,7 @@ License:
 ------
 This project is licensed under the terms of the GNU Lesser General Public License Version 3,
 see LICENSE.txt.
+
+To Do:
+------
+Transfer of management ownership to different Actvity/Fragment/Lived object
