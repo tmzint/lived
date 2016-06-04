@@ -28,49 +28,50 @@ Example:
 ------
 
 ### Code
+```scala
+import android.app.Activity
+import android.util.Log
+import com.tmzint.android.lived.lifecycle._
 
-    import android.app.Activity
-    import android.util.Log
-    import com.tmzint.android.lived.lifecycle._
-    
-    // The MainActivity class extends the ActivityLifecycleManager to delegate lifecycle events.
-    class MainActivity extends Activity with ActivityLifecycleManager {
-        val mA = new Managed(new T1("A")) // mA is a lifecycle managed object
-        mA.ping() // implicit conversion to T1
+// The MainActivity class extends the ActivityLifecycleManager to delegate lifecycle events.
+class MainActivity extends Activity with ActivityLifecycleManager {
+    val mA = new Managed(new T1("A")) // mA is a lifecycle managed object
+    mA.ping() // implicit conversion to T1
+}
+
+class T1(name: String) extends Startable with Pausable {
+    override def onStart(): Unit = Log.d(name,"onStart")
+    override def onPause(): Unit = Log.d(name,"onPause")
+    def ping(): Unit = Log.d(name, "ping!")
+
+    class T2(name2: String) extends Startable with Pausable {
+        override def onStart(): Unit = Log.d(name + name2,"onStart")
+        override def onPause(): Unit = Log.d(name + name2,"onPause")
     }
     
-    class T1(name: String) extends Startable with Pausable {
-        override def onStart(): Unit = Log.d(name,"onStart")
-        override def onPause(): Unit = Log.d(name,"onPause")
-        def ping(): Unit = Log.d(name, "ping!")
-    
-        class T2(name2: String) extends Startable with Pausable {
-            override def onStart(): Unit = Log.d(name + name2,"onStart")
-            override def onPause(): Unit = Log.d(name + name2,"onPause")
-        }
-        
-        object T2 {
-            def apply(name: String): Managed[T2] = new Managed(new T2(name))
-        }
-    
-        val a = T2("0")
+    object T2 {
+        def apply(name: String): Managed[T2] = new Managed(new T2(name))
     }
+
+    val a = T2("0")
+}
+```
 
 ### Output
 
 Constructor phase:
 
-1.  A ping!
+1.  `A ping!`
 
 oStart phase:
 
-1.  A onStart
-2.  A0 onStart
+1.  `A onStart`
+2.  `A0 onStart`
 
 onPause phase:
 
-1.  A0 onPause
-2.  A onPause
+1.  `A0 onPause`
+2.  `A onPause`
 
 License:
 ------
