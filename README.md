@@ -48,7 +48,7 @@ class T1(name: String) extends Startable with Pausable {
         override def onStart(): Unit = Log.d(name + name2,"onStart")
         override def onPause(): Unit = Log.d(name + name2,"onPause")
     }
-    
+
     object T2 {
         def apply(name: String): Managed[T2] = new Managed(new T2(name))
     }
@@ -75,9 +75,5 @@ onPause phase:
 
 License:
 ------
-This project is licensed under the terms of the GNU Lesser General Public License Version 3,
+This project is licensed under the terms of the MIT License,
 see LICENSE.txt.
-
-To Do:
-------
-Transfer of management ownership to different Actvity/Fragment/Lived object
